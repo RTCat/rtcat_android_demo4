@@ -20,6 +20,7 @@ import com.shishimao.sdk.tools.L;
 
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -33,12 +34,6 @@ public class MainActivity extends AppCompatActivity {
 
     HashMap<String,Sender> senders = new HashMap<>();
     HashMap<String,Receiver> receivers = new HashMap<>();
-
-    int layout_width = 50;
-    int layout_height = 50;
-
-    int x = 0;
-    int y = 0;
 
     public String token;
 
@@ -55,10 +50,15 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText)findViewById(R.id.editText);
         textView = (TextView) findViewById(R.id.textView);
 
-
         cat = new RTCat(MainActivity.this,true,true,true,false, AppRTCAudioManager.AudioDevice.SPEAKER_PHONE,RTCat.CodecSupported.H264, L.VERBOSE);
+        cat.addObserver(new RTCat.RTCatObserver() {
+            @Override
+            public void init() {
+                createSession(null);
+            }
+        });
+        cat.init();
 
-        createSession(null);
     }
 
     public void sendMessage(View view){
@@ -152,6 +152,11 @@ public class MainActivity extends AppCompatActivity {
                                         Log.d("Receiver Log ->",object.toString());
                                     }
 
+                                    @Override
+                                    public void file(File file) {
+
+                                    }
+
 
                                     @Override
                                     public void error(Errors errors) {
@@ -197,6 +202,16 @@ public class MainActivity extends AppCompatActivity {
                                 @Override
                                 public void log(JSONObject object) {
                                     Log.d("Sender Log ->",object.toString());
+                                }
+
+                                @Override
+                                public void fileSending(int i) {
+
+                                }
+
+                                @Override
+                                public void fileFinished() {
+
                                 }
 
                                 @Override
