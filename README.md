@@ -2,7 +2,7 @@
 基于 [实时猫 Android SDK](https://shishimao.com) 开发的样例 Demo
 
 ## 说明
-本例介绍如何通过`实时猫 Android SDK`实现多人音视频通信。
+本例介绍如何通过`实时猫 Android SDK`实现多人文字聊天功能。
 
 ## 使用
 
