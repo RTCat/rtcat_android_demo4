@@ -56,6 +56,11 @@ public class MainActivity extends AppCompatActivity {
             public void init() {
                 createSession(null);
             }
+
+            @Override
+            public void error(Errors errors) {
+
+            }
         });
         cat.init();
 
@@ -232,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                         @Override
-                        public void error(String error) {
+                        public void error(Errors errors) {
 
                         }
                     }
